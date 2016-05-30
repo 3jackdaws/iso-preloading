@@ -7,11 +7,21 @@ Author: Ian Murphy
 USE:
 
 All preload elements must have class "iso-preload".
-All preload elements must have attribute: preload-id="id to swap preload data to".
-All preload elements must have attribute: preload="string to pass to preload handler".
+All preload elements must have a preload handler installed: iso.installPreloadClass("classname", lambda-preload-decoder, "dividtoswapto")
+All preload elements must have a preload attribute with the id or whatever.
+All preload elements must have a preload-class attribute.
 
-Call iso-preload.installPreloadHandler(function (){yadda yadda, must return web path }) to install a custom preload handler
-This allows you to 
+For example, all articles are stored in the /articles/ directory.
+
+iso.installPreloadCLass("article", function(name){
+	return "/articles/" + name + ".html";
+}, "putarticlehere");
+
+<div id="putarticlehere" class="iso-preload" preload="article-name" preload-class="article"></div>
+
+No event handlers, nothing else.  Install your preload class and do some preloading.
+\
+
 */
 
 window.addEventListener('load', 
